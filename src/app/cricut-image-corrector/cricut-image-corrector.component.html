@@ -1,0 +1,196 @@
+<form [formGroup]="calibrationForm" novalidate>
+  <mat-card class="shipping-card">
+
+    <mat-card-header>
+      <mat-card-title>Cricut Calibration Steps</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-tab-group selectedIndex="{{stepNumber}}">
+        <mat-tab label="1. Select Cutter Units">
+          <mat-card>
+            <app-instruction-text-area [control]="instructionsControl" label="Instructions"></app-instruction-text-area>
+            <mat-card-header>
+              <mat-card-title></mat-card-title>
+            </mat-card-header>
+            <!-- Units of Measure -->
+            <div class="row">
+              <div class="col">
+                <mat-form-field class="half-width">
+                  <mat-label>Units</mat-label>
+                  <mat-select [formControl]="selectedUnitsControl" (selectionChange)="unitsChanged($event)">
+                    <mat-option *ngFor="let unit of units" [value]="unit">
+                      {{ unit.viewValue }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="calibrationForm.controls['selectedUnits'].hasError('required')">
+                    Unit of Measure is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+          </mat-card>
+        </mat-tab>
+        <mat-tab label="2. Download Calibration Image" formGroupName="calibrationGroup">
+          <mat-card>
+            <app-instruction-text-area [control]="instructionsControl" label="Instructions"></app-instruction-text-area>
+
+            <mat-card-header>Calibration Image - {{defaultUnits.viewValue}}</mat-card-header>
+            <mat-card-subtitle>
+              <!-- Download Icon-->
+              <a [href]="calibrationImage.url" target="_blank" class="btn btn-border"
+                download="{{calibrationImage.url}}."><mat-icon>download</mat-icon></a></mat-card-subtitle>
+            <mat-card *ngIf="defaultUnits.value==='si'" class="mat-card-content">
+              <img ngSrc="{{units[0].image.url}}" priority="1" mat-card-lg-image width="{{imageSize}}"
+                height="{{imageSize}}" />
+            </mat-card>
+            <mat-card *ngIf="defaultUnits.value==='us'" class="mat-card-content">
+              <img ngSrc="{{units[1].image.url}}" priority="1" mat-card-lg-image width="{{imageSize}}"
+                height="{{imageSize}}" />
+            </mat-card>
+          </mat-card>
+        </mat-tab>
+        <mat-tab label="3. Import and Cut Calibration Image">
+          <mat-card>
+            <app-instruction-text-area [control]="instructionsControl" label="Instructions"></app-instruction-text-area>
+
+            <!-- Expected Measurements-->
+            <div class="row">
+              <div class="line"><mat-divider></mat-divider></div>
+              <span class="text mat-typography">Calibration</span>
+              <div class="line"><mat-divider></mat-divider></div>
+            </div>
+            <div class="row" formGroupName="calibrationGroup">
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <mat-label>Width</mat-label>
+                  <input matInput formControlName="width">
+                  <mat-error
+                    *ngIf="calibrationForm.controls['calibrationGroup'].controls['width'].hasError('required')">
+                    Expected Width is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <mat-label>Height</mat-label>
+                  <input matInput formControlName="height">
+                  <mat-error
+                    *ngIf="calibrationForm.controls['calibrationGroup'].controls['height'].hasError('required')">
+                    Expected Height is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+          </mat-card>
+        </mat-tab>
+        <!-- Actual Measurements-->
+        <mat-tab label="4. Measure Calibration Cut">
+          <mat-card>
+            <app-instruction-text-area [control]="instructionsControl" label="Instructions"></app-instruction-text-area>
+            <div class="row">
+              <div class="line"><mat-divider></mat-divider></div>
+              <span class="text mat-typography">Actual</span>
+              <div class="line"><mat-divider></mat-divider></div>
+            </div>
+            <div class="row" formGroupName="calibrationCutGroup">
+              <div class="col">
+                <mat-form-field class="full-width">
+
+                  <mat-label>Width</mat-label>
+                  <input matInput formControlName="width">
+                  <mat-error
+                    *ngIf="calibrationForm.controls['calibrationCutGroup'].controls['width'].hasError('required')">
+                    Actual Width is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <mat-label>Height</mat-label>
+                  <input matInput formControlName="height">
+                  <mat-error
+                    *ngIf="calibrationForm.controls['calibrationCutGroup'].controls['height'].hasError('required')">
+                    Actual Height is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <!-- Correction Factors -->
+            <div class="row">
+              <div class="line"><mat-divider></mat-divider></div>
+              <span class="text mat-typography">Corrections</span>
+              <div class="line"><mat-divider></mat-divider></div>
+            </div>
+            <div class="row" formGroupName="correctionFactorGroup">
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <mat-label>Width</mat-label>
+                  <input matInput formControlName="width">
+                </mat-form-field>
+              </div>
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <mat-label>Height</mat-label>
+                  <input matInput formControlName="height">
+                </mat-form-field>
+              </div>
+            </div>
+
+          </mat-card>
+        </mat-tab>
+        <!-- Image Input Factors -->
+
+        <mat-tab label="5. Open and Correct Image for Final Cut">
+          <mat-card>
+            <app-instruction-text-area [control]="instructionsControl" label="Instructions"></app-instruction-text-area>
+            <div class="row">
+              <div class="line"><mat-divider></mat-divider></div>
+              <span class="text mat-typography">Input Image</span>
+              <div class="line"><mat-divider></mat-divider></div>
+            </div>
+            <div class="row" formGroupName="originalImageGroup">
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <mat-label>Width</mat-label>
+                  <input matInput formControlName="width">
+                </mat-form-field>
+              </div>
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <mat-label>Height</mat-label>
+                  <input matInput formControlName="height">
+                </mat-form-field>
+              </div>
+            </div>
+            <!-- Corrected Image -->
+            <div class="row">
+              <div class="line"><mat-divider></mat-divider></div>
+              <span class="text mat-typography">Corrected Image</span>
+              <div class="line"><mat-divider></mat-divider></div>
+            </div>
+            <div class="row" formGroupName="correctedImageGroup">
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <mat-label>Width</mat-label>
+                  <input matInput formControlName="width">
+                </mat-form-field>
+              </div>
+              <div class="col">
+                <mat-form-field class="full-width">
+                  <mat-label>Height</mat-label>
+                  <input matInput formControlName="height">
+                </mat-form-field>
+              </div>
+            </div>
+          </mat-card>
+
+        </mat-tab>
+      </mat-tab-group>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit" (click)="previousStep()">PREVIOUS</button>
+        <button mat-raised-button color="primary" type="submit" (click)="nextStep()">NEXT</button>
+      </mat-card-actions>
+    </mat-card-content>
+
+  </mat-card>
+</form>

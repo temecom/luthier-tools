@@ -1,2 +1,2 @@
 # luthier-tools
-Computing Tool for the Luther trades
+Computing Tool for the Luthier trades
