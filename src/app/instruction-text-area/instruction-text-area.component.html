@@ -1,0 +1,6 @@
+
+<mat-card  *ngIf="control" >
+    <mat-card-title>{{label}}</mat-card-title>
+    <textarea matInput readonly [formControl]="control" class="instructions" >
+    </textarea>
+</mat-card>
