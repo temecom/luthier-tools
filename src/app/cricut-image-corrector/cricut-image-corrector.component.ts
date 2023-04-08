@@ -48,46 +48,46 @@ export class CricutImageCorrectorComponent implements OnInit {
   stepNumber: number = 0;
   instructionList: string[] = [
     // 1 - Select Units
-    `a. Select the units used on your machine.
-b. Click [NEXT]`,
+    `- Select the units used on your machine.
+- Click [NEXT]`,
 
     // 2. - Download
-    `a. Click the download icon below
-b. Click [NEXT]`,
+    `- Click the download icon below
+- Click [NEXT]`,
 
     // Cut the calibration piece
-    `a. Prepare Cricut Design Space for calibration
+    `- Prepare Cricut Design Space for calibration
     - Open Design Space
     - Create a new project
     - Click on the left side 'stack' menu
     - Select 'Upload'
     - Click on 'Upload Image'
-b. Select the calibration image
+- Select the calibration image
     - Navigate to your Download folder
     - Select the downloaded image
     - Click on 'Upload'
-c. Add the image to the Canvas
+- Add the image to the Canvas
     - Select the image from the upload list
     - Click on 'Add to Canvas'
-d. Confirm that the image is loaded with the correct dimensions
+- Confirm that the image is loaded with the correct dimensions
     - Compare with the calibration image dimensions
-e. Cut using the same material and settings as the target cut
-f. Click [NEXT]`,
+- Cut using the same material and settings as the target cut
+- Click [NEXT]`,
 
     // Measure cut errors
-    `a. Measure the width and height of the calibration cut.
-b. Enter the dimensions below
-c. Note calibration correction factors
+    `- Measure the width and height of the calibration cut.
+- Enter the dimensions below
+- Note calibration correction factors
   - The factors will be multiplied by the target pioece dimensions to produce the corrected cut
-d. Click [NEXT]`,
+- Click [NEXT]`,
     // Correct target image
-`a. Open your target project in Design Space 
-b. Click on the image to be cut
-c. Enter the dimensions of the target piece as noted in the Design Space
+`- Open your target project in Design Space 
+- Click on the image to be cut
+- Enter the dimensions of the target piece as noted in the Design Space
   - The corrected iamge dimensions will be calculated
-d. 'Unlock the image dimension proportions using the small lock icon above the wisth and height
-e. Enter the corrected with and height from below
-f. Cut the piece using the same material and settings used to calibrate`
+- 'Unlock the image dimension proportions using the small lock icon above the wisth and height
+- Enter the corrected with and height from below
+- Cut the piece using the same material and settings used to calibrate`
 
   ];
 

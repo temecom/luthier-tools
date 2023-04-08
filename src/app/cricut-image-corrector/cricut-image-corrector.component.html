@@ -63,7 +63,7 @@
               <div class="col">
                 <mat-form-field class="full-width">
                   <mat-label>Width</mat-label>
-                  <input matInput formControlName="width">
+                  <input matInput formControlName="width" readonly="true">
                   <mat-error
                     *ngIf="calibrationForm.controls['calibrationGroup'].controls['width'].hasError('required')">
                     Expected Width is <strong>required</strong>
@@ -73,7 +73,7 @@
               <div class="col">
                 <mat-form-field class="full-width">
                   <mat-label>Height</mat-label>
-                  <input matInput formControlName="height">
+                  <input matInput formControlName="height" readonly="true">
                   <mat-error
                     *ngIf="calibrationForm.controls['calibrationGroup'].controls['height'].hasError('required')">
                     Expected Height is <strong>required</strong>
@@ -125,13 +125,13 @@
               <div class="col">
                 <mat-form-field class="full-width">
                   <mat-label>Width</mat-label>
-                  <input matInput formControlName="width">
+                  <input matInput formControlName="width" readonly="true">
                 </mat-form-field>
               </div>
               <div class="col">
                 <mat-form-field class="full-width">
                   <mat-label>Height</mat-label>
-                  <input matInput formControlName="height">
+                  <input matInput formControlName="height" readonly="true">
                 </mat-form-field>
               </div>
             </div>
@@ -172,13 +172,13 @@
               <div class="col">
                 <mat-form-field class="full-width">
                   <mat-label>Width</mat-label>
-                  <input matInput formControlName="width">
+                  <input matInput formControlName="width" readonly="true"> 
                 </mat-form-field>
               </div>
               <div class="col">
                 <mat-form-field class="full-width">
                   <mat-label>Height</mat-label>
-                  <input matInput formControlName="height">
+                  <input matInput formControlName="height" readonly="true">
                 </mat-form-field>
               </div>
             </div>
@@ -187,7 +187,7 @@
         </mat-tab>
       </mat-tab-group>
       <mat-card-actions>
-        <button mat-raised-button color="primary" type="submit" (click)="previousStep()">PREVIOUS</button>
+        <button mat-raised-button color="primary" type="button" (click)="previousStep()">PREVIOUS</button>
         <button mat-raised-button color="primary" type="submit" (click)="nextStep()">NEXT</button>
       </mat-card-actions>
     </mat-card-content>

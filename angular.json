@@ -33,7 +33,9 @@
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.sass"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/marked/marked.min.js"
+            ]
           },
           "configurations": {
             "production": {

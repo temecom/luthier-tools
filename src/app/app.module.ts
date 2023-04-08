@@ -21,6 +21,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { NgIf } from '@angular/common';
 import { InstructionTextAreaComponent } from './instruction-text-area/instruction-text-area.component';
 
+import { MarkdownModule } from 'ngx-markdown';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +46,8 @@ import { InstructionTextAreaComponent } from './instruction-text-area/instructio
     MatDividerModule,
     NgOptimizedImage,
     NgIf,
-    MatTabsModule
+    MatTabsModule,
+    MarkdownModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
