@@ -78,15 +78,15 @@ export class CricutImageCorrectorComponent implements OnInit {
     `- Measure the width and height of the calibration cut.
 - Enter the dimensions below
 - Note calibration correction factors
-  - The factors will be multiplied by the target pioece dimensions to produce the corrected cut
+  - The correction factors will be multiplied by the image dimensions to produce the corrected cut
 - Click [NEXT]`,
     // Correct target image
 `- Open your target project in Design Space 
 - Click on the image to be cut
 - Enter the dimensions of the target piece as noted in the Design Space
   - The corrected iamge dimensions will be calculated
-- 'Unlock the image dimension proportions using the small lock icon above the wisth and height
-- Enter the corrected with and height from below
+- 'Unlock the image proportions by clicking on the small lock icon above the width and height
+- Enter the corrected width and height from below
 - Cut the piece using the same material and settings used to calibrate`
 
   ];
